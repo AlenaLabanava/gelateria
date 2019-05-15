@@ -11,16 +11,14 @@ public class Topping {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private String type;
-    private String taste;
+    private String name;
     private Integer price;
 
     public Topping(){
     }
 
-    public Topping(String type, String taste, Integer price) {
-        this.type = type;
-        this.taste = taste;
+    public Topping(String name, Integer price) {
+        this.name = name;
         this.price = price;
     }
 
@@ -32,20 +30,12 @@ public class Topping {
         this.id = id;
     }
 
-    public String getType() {
-        return type;
+    public String getName() {
+        return name;
     }
 
-    public void setType(String type) {
-        this.type = type;
-    }
-
-    public String getTaste() {
-        return taste;
-    }
-
-    public void setTaste(String taste) {
-        this.taste = taste;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public Integer getPrice() {
