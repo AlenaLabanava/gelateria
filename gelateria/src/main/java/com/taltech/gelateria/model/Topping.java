@@ -1,27 +1,24 @@
 package com.taltech.gelateria.model;
 
-import io.swagger.models.auth.In;
-
-import javax.annotation.Generated;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class IceCream {
+public class Topping {
 
     @Id
-    @GeneratedValue (strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String type;
     private String taste;
     private Integer price;
 
-    public IceCream(){
+    public Topping(){
     }
 
-    public IceCream (String type, String taste, Integer price){
+    public Topping(String type, String taste, Integer price) {
         this.type = type;
         this.taste = taste;
         this.price = price;
