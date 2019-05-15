@@ -17,8 +17,8 @@ public class Topping {
     public Topping(){
     }
 
-    public Topping(String taste, Integer price) {
-        this.name = taste;
+    public Topping(String name, Integer price) {
+        this.name = name;
         this.price = price;
     }
 
@@ -34,8 +34,8 @@ public class Topping {
         return name;
     }
 
-    public void setName(String taste) {
-        this.name = taste;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public Integer getPrice() {
