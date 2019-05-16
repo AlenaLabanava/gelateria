@@ -1,7 +1,9 @@
 package com.taltech.gelateria;
 
 import com.taltech.gelateria.model.IceCream;
+import com.taltech.gelateria.model.Topping;
 import com.taltech.gelateria.repository.IceCreamRepository;
+import com.taltech.gelateria.repository.ToppingRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -23,4 +25,13 @@ public class GelateriaApplication {
 
 		};
 	}
+
+	@Bean
+	public CommandLineRunner initToppings (ToppingRepository repository) {
+		return (args) -> {
+			repository.save(new Topping("Chocolate", 1));
+
+		};
+	}
+
 }
