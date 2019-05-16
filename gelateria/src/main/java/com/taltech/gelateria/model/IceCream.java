@@ -1,8 +1,6 @@
 package com.taltech.gelateria.model;
 
-import io.swagger.models.auth.In;
 
-import javax.annotation.Generated;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
