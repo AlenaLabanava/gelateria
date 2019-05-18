@@ -29,7 +29,7 @@ public class OrderItemService {
 
         dbOrderItem.setIceCream(getOrderedIceCream(orderItem));
         dbOrderItem.setTopping(getOrderedTopping(orderItem));
-        //dbOrderItem.setPrice(getPrice(orderItem));
+        dbOrderItem.setPrice(getTotalPrice(orderItem));
 
 
         OrderItem saved = orderItemRepository.save(dbOrderItem);
@@ -37,7 +37,6 @@ public class OrderItemService {
     }
 
   public List<OrderItemDTO> findAll() {
-
         return orderItemRepository.findAll().stream()
                 .map(this::convert)
                 .collect(Collectors.toList());
@@ -56,7 +55,11 @@ public class OrderItemService {
         Topping dbTopping = dbToppingOp.orElseThrow(RuntimeException::new);
         return dbTopping;
     }
-
+    private Double getTotalPrice(OrderItemDTO orderItem) {
+        Double totalPrice = 0.0;
+        totalPrice = orderItem.getTopping().getPrice() + orderItem.getIceCream().getPrice();
+        return totalPrice;
+    }
     private OrderItemDTO convert(OrderItem orderItem) {
         OrderItemDTO orderItemDTO = new OrderItemDTO();
         orderItemDTO.setId(orderItem.getId());

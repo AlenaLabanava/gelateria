@@ -1,8 +1,10 @@
 package com.taltech.gelateria;
 
 import com.taltech.gelateria.model.IceCream;
+import com.taltech.gelateria.model.OrderItem;
 import com.taltech.gelateria.model.Topping;
 import com.taltech.gelateria.repository.IceCreamRepository;
+import com.taltech.gelateria.repository.OrderItemRepository;
 import com.taltech.gelateria.repository.ToppingRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -19,21 +21,20 @@ public class GelateriaApplication {
 	}
 
 	@Bean
-	public CommandLineRunner initIceCreams (IceCreamRepository repository) {
+	public CommandLineRunner initIceCreams (IceCreamRepository repository, ToppingRepository toppingRepository, OrderItemRepository itemRepository ) {
 		return (args) -> {
-			repository.save(new IceCream("Sorbet", "Lemon", 3.00));
+			IceCream ic = repository.save(new IceCream("Sorbet", "Lemon", 3.00));
 			repository.save(new IceCream("Ordinary", "Vanilla", 3.50));
 			repository.save(new IceCream("Vegan", "Stracciatella", 3.50));
 
+			Topping tp= toppingRepository.save(new Topping("Chocolate Chips", 1.00));
+			toppingRepository.save(new Topping("Crushed Peanuts", 0.50));
+
+			itemRepository.save(new OrderItem(ic, tp, 4.00));
+
 		};
 	}
 
-	@Bean
-	public CommandLineRunner initToppings (ToppingRepository repository) {
-		return (args) -> {
-			repository.save(new Topping("Chocolate Chips", 1.00));
-			repository.save(new Topping("Crushed Peanuts", 0.50));
-		};
-	}
+
 
 }
