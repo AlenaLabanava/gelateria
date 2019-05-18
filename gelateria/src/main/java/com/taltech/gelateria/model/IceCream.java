@@ -14,12 +14,12 @@ public class IceCream {
     private Long id;
     private String type;
     private String taste;
-    private Integer price;
+    private Double price;
 
     public IceCream(){
     }
 
-    public IceCream (String type, String taste, Integer price){
+    public IceCream (String type, String taste, Double price){
         this.type = type;
         this.taste = taste;
         this.price = price;
@@ -49,11 +49,11 @@ public class IceCream {
         this.taste = taste;
     }
 
-    public Integer getPrice() {
+    public Double getPrice() {
         return price;
     }
 
-    public void setPrice(Integer price) {
+    public void setPrice(Double price) {
         this.price = price;
     }
 }

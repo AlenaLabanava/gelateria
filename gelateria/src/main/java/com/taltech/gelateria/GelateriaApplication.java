@@ -21,7 +21,9 @@ public class GelateriaApplication {
 	@Bean
 	public CommandLineRunner initIceCreams (IceCreamRepository repository) {
 		return (args) -> {
-			repository.save(new IceCream("Sorbet", "Lemon", 3));
+			repository.save(new IceCream("Sorbet", "Lemon", 3.00));
+			repository.save(new IceCream("Ordinary", "Vanilla", 3.50));
+			repository.save(new IceCream("Vegan", "Stracciatella", 3.50));
 
 		};
 	}
@@ -29,8 +31,8 @@ public class GelateriaApplication {
 	@Bean
 	public CommandLineRunner initToppings (ToppingRepository repository) {
 		return (args) -> {
-			repository.save(new Topping("Chocolate", 1));
-
+			repository.save(new Topping("Chocolate Chips", 1.00));
+			repository.save(new Topping("Crushed Peanuts", 0.50));
 		};
 	}
 

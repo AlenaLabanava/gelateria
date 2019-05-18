@@ -1,33 +1,14 @@
-package com.taltech.gelateria.model;
+package com.taltech.gelateria.service;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.taltech.gelateria.model.IceCream;
+import com.taltech.gelateria.model.Topping;
 
-import javax.persistence.*;
-import javax.validation.constraints.NotNull;
+public class OrderItemDTO {
 
-@Entity
-public class OrderItem {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    @NotNull
-    @ManyToOne
-    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private IceCream iceCream;
-    @ManyToOne
-    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private Topping topping;
-    @NotNull
     private Double price;
-
-    public OrderItem(){
-    }
-
-    public OrderItem( IceCream iceCream, Topping topping, Double price) {
-        this.iceCream = iceCream;
-        this.topping = topping;
-        this.price = price;
-    }
 
     public Long getId() {
         return id;

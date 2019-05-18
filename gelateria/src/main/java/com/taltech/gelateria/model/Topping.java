@@ -12,12 +12,12 @@ public class Topping {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String name;
-    private Integer price;
+    private Double price;
 
     public Topping(){
     }
 
-    public Topping(String name, Integer price) {
+    public Topping(String name, Double price) {
         this.name = name;
         this.price = price;
     }
@@ -38,11 +38,11 @@ public class Topping {
         this.name = name;
     }
 
-    public Integer getPrice() {
+    public Double getPrice() {
         return price;
     }
 
-    public void setPrice(Integer price) {
+    public void setPrice(Double price) {
         this.price = price;
     }
 }
