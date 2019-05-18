@@ -27,12 +27,10 @@ public class IceCreamService {
     }
 
     public IceCream save(IceCream iceCream) {
-        //bookValidator.validate(book);
         return iceCreamRepository.save(iceCream);
     }
 
     public IceCream update(IceCream iceCream, Long id) {
-        //bookValidator.validate(book);
         IceCream dbIceCream = findOne(id);
         dbIceCream.setType(iceCream.getType());
         dbIceCream.setTaste(iceCream.getTaste());
