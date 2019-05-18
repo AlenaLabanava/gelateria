@@ -53,7 +53,7 @@ public class OrderItemService {
 
     private Topping getOrderedTopping(OrderItemDTO orderItem) {
         Optional<Topping> dbToppingOp = toppingRepository.findById(orderItem.getTopping().getId());
-        Topping dbTopping = dbToppingOp.orElseThrow(RuntimeException::new); //todo return 400
+        Topping dbTopping = dbToppingOp.orElseThrow(RuntimeException::new);
         return dbTopping;
     }
 
