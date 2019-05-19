@@ -8,9 +8,13 @@ import com.taltech.gelateria.repository.OrderItemRepository;
 import com.taltech.gelateria.repository.ToppingRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
+
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
+
+import static org.springframework.http.HttpStatus.BAD_REQUEST;
 
 
 @Service
@@ -24,7 +28,7 @@ public class OrderItemService {
     private OrderItemRepository orderItemRepository;
 
 
-    public OrderItemDTO orderItem (OrderItemDTO orderItem ) {
+    public OrderItemDTO orderItem(OrderItemDTO orderItem) {
         OrderItem dbOrderItem = new OrderItem();
 
         dbOrderItem.setIceCream(getOrderedIceCream(orderItem));
@@ -36,30 +40,31 @@ public class OrderItemService {
         return convert(saved);
     }
 
-  public List<OrderItemDTO> findAll() {
+    public List<OrderItemDTO> findAll() {
         return orderItemRepository.findAll().stream()
                 .map(this::convert)
                 .collect(Collectors.toList());
     }
 
 
-
     private IceCream getOrderedIceCream(OrderItemDTO orderItem) {
         Optional<IceCream> dbIceCreamOp = iceCreamRepository.findById(orderItem.getIceCream().getId());
-        IceCream dbIceCream = dbIceCreamOp.orElseThrow(RuntimeException::new);
+        IceCream dbIceCream = dbIceCreamOp.orElseThrow(this::badRequest);
         return dbIceCream;
     }
 
     private Topping getOrderedTopping(OrderItemDTO orderItem) {
         Optional<Topping> dbToppingOp = toppingRepository.findById(orderItem.getTopping().getId());
-        Topping dbTopping = dbToppingOp.orElseThrow(RuntimeException::new);
+        Topping dbTopping = dbToppingOp.orElseThrow(this::badRequest);
         return dbTopping;
     }
+
     private Double getTotalPrice(OrderItemDTO orderItem) {
         Double totalPrice = 0.0;
         totalPrice = orderItem.getTopping().getPrice() + orderItem.getIceCream().getPrice();
         return totalPrice;
     }
+
     private OrderItemDTO convert(OrderItem orderItem) {
         OrderItemDTO orderItemDTO = new OrderItemDTO();
         orderItemDTO.setId(orderItem.getId());
@@ -67,5 +72,9 @@ public class OrderItemService {
         orderItemDTO.setTopping(orderItem.getTopping());
         orderItemDTO.setPrice(orderItem.getPrice());
         return orderItemDTO;
+    }
+
+    private ResponseStatusException badRequest() {
+        return new ResponseStatusException(BAD_REQUEST, "Product doesnt exist");
     }
 }
