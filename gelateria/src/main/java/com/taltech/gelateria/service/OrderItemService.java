@@ -14,7 +14,7 @@ import java.util.stream.Collectors;
 
 
 @Service
-public class OrderItemService {
+public class  OrderItemService {
 
     @Autowired
     private IceCreamRepository iceCreamRepository;
@@ -30,7 +30,6 @@ public class OrderItemService {
         dbOrderItem.setIceCream(getOrderedIceCream(orderItem));
         dbOrderItem.setTopping(getOrderedTopping(orderItem));
         dbOrderItem.setPrice(getTotalPrice(orderItem));
-
 
         OrderItem saved = orderItemRepository.save(dbOrderItem);
         return convert(saved);
