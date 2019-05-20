@@ -30,11 +30,9 @@ public class GelateriaApplication {
 			Topping tp= toppingRepository.save(new Topping("Chocolate Chips", 1.00));
 			toppingRepository.save(new Topping("Crushed Peanuts", 0.50));
 
-			itemRepository.save(new OrderItem(ic, tp, 4.00));
+			itemRepository.save(new OrderItem(ic, tp, ic.getPrice()+tp.getPrice()));
 
 		};
 	}
-
-
 
 }
